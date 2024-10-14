@@ -2,17 +2,38 @@
   "name": "typescript-ioc",
   "version": "3.2.4",
   "description": "A Lightweight annotation-based dependency injection container for typescript.",
+  "keywords": [
+    "ioc",
+    "di",
+    "cdi",
+    "javascript",
+    "typescript",
+    "node",
+    "dependency injection",
+    "dependency inversion",
+    "inversion of control container"
+  ],
+  "bugs": {
+    "url": "https://github.com/thiagobustamante/typescript-ioc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thiagobustamante/typescript-ioc.git"
+  },
+  "license": "MIT",
   "author": "Thiago da Rosa de Bustamante <trbustamante@gmail.com>",
+  "main": "./dist/typescript-ioc.js",
+  "typings": "./dist/typescript-ioc.d.ts",
   "scripts": {
-    "start": "tsc -w",
     "build": "npm run clean && tsc",
     "clean": "rimraf dist",
-    "prepare": "rimraf dist && tsc",
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:tsc",
     "lint:eslint": "eslint ./src/**/*.ts ./test/**/*.ts",
     "lint:eslint:fix": "eslint --fix ./src/**/*.ts ./test/**/*.ts -t verbose",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc --noEmit",
+    "prepare": "rimraf dist && tsc",
+    "start": "tsc -w",
     "pretest": "npm run build && npm run lint",
     "test": "jest --config ./test/jest.config.js --coverage",
     "tsc": "tsc"
@@ -34,31 +55,11 @@
     "eslint-plugin-jsdoc": "^48.0.4",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "jest": "^29.7.0",
+    "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "source-map-support": "^0.5.21",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
-  },
-  "keywords": [
-    "ioc",
-    "di",
-    "cdi",
-    "javascript",
-    "typescript",
-    "node",
-    "dependency injection",
-    "dependency inversion",
-    "inversion of control container"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thiagobustamante/typescript-ioc.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/thiagobustamante/typescript-ioc/issues"
-  },
-  "main": "./dist/typescript-ioc.js",
-  "typings": "./dist/typescript-ioc.d.ts"
+  }
 }
