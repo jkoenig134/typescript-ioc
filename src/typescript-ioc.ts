@@ -1,23 +1,43 @@
 /**
  * This is a lightweight annotation-based dependency injection container for typescript.
  *
- * Visit the project page on [GitHub] (https://github.com/thiagobustamante/typescript-ioc).
+ * Visit the project page on [GitHub] (https://github.com/nmshd/typescript-ioc).
  */
 
 import 'reflect-metadata';
-import { Config, ValueConfig, ObjectFactory, Scope, ContainerConfiguration, ConstantConfiguration, NamespaceConfiguration, Snapshot, BuildContext } from './model';
 import { IoCContainer } from './container/container';
-import { LocalScope, SingletonScope, RequestScope } from './scopes';
+import {
+    BuildContext,
+    Config,
+    ConstantConfiguration,
+    ContainerConfiguration,
+    NamespaceConfiguration,
+    ObjectFactory,
+    Scope,
+    Snapshot,
+    ValueConfig
+} from './model';
+import { LocalScope, RequestScope, SingletonScope } from './scopes';
 
-export { Config };
-export { ValueConfig };
-export { ObjectFactory };
-export { BuildContext };
-export { Scope };
-export { ContainerConfiguration };
-export { ConstantConfiguration };
-export { Inject, Factory, Singleton, Scoped, OnlyInstantiableByContainer, InRequestScope, InjectValue } from './decorators';
-export { Snapshot };
+export {
+    Factory,
+    Inject,
+    InjectValue,
+    InRequestScope,
+    OnlyInstantiableByContainer,
+    Scoped,
+    Singleton
+} from './decorators';
+export {
+    BuildContext,
+    Config,
+    ConstantConfiguration,
+    ContainerConfiguration,
+    ObjectFactory,
+    Scope,
+    Snapshot,
+    ValueConfig
+};
 
 Scope.Local = new LocalScope();
 Scope.Singleton = new SingletonScope();
@@ -29,7 +49,6 @@ Scope.Request = new RequestScope();
  * to configure the dependency directly on the class.
  */
 export class Container {
-
     /**
      * Add a dependency to the Container. If this type is already present, just return its associated
      * configuration object.
@@ -66,8 +85,8 @@ export class Container {
     }
 
     /**
-     * 
-     * @param name 
+     *
+     * @param name
      */
     public static bindName(name: string): ValueConfig {
         return IoCContainer.bindName(name);
@@ -109,10 +128,12 @@ export class Container {
 
     /**
      * Import an array of configurations to the Container
-     * @param configurations 
+     * @param configurations
      */
-    public static configure(...configurations: Array<ContainerConfiguration | ConstantConfiguration | NamespaceConfiguration>) {
-        configurations.forEach(config => {
+    public static configure(
+        ...configurations: Array<ContainerConfiguration | ConstantConfiguration | NamespaceConfiguration>
+    ) {
+        configurations.forEach((config) => {
             if ((config as ContainerConfiguration).bind) {
                 Container.configureType(config as ContainerConfiguration);
             } else if ((config as ConstantConfiguration).bindName) {
@@ -126,7 +147,7 @@ export class Container {
     private static configureNamespace(config: NamespaceConfiguration) {
         const selectedNamespace = IoCContainer.selectedNamespace();
         const env = config.env || config.namespace;
-        Object.keys(env).forEach(namespace => {
+        Object.keys(env).forEach((namespace) => {
             Container.namespace(namespace);
             const namespaceConfig = env[namespace];
             Container.configure(...namespaceConfig);
@@ -149,8 +170,7 @@ export class Container {
         if (bind) {
             if (config.to) {
                 bind.to(config.to);
-            }
-            else if (config.factory) {
+            } else if (config.factory) {
                 bind.factory(config.factory);
             }
             if (config.scope) {
@@ -166,7 +186,7 @@ export class Container {
 class ContainerBuildContext extends BuildContext {
     private context = new Map<Function, any>();
 
-    public build<T>(source: Function & { prototype: T; }, factory: ObjectFactory): T {
+    public build<T>(source: Function & { prototype: T }, factory: ObjectFactory): T {
         let instance = this.context.get(source);
         if (!instance) {
             instance = factory(this);
