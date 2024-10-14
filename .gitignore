@@ -3,7 +3,6 @@ dist
 !test/*.js
 doc
 node_modules
-.vscode
 reports
 *.log
 npm-debug.log*

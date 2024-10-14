@@ -3,17 +3,11 @@
     "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "module": "commonjs",
     "noUnusedLocals": true,
     "sourceMap": true,
     "target": "es6"
   },
-  "include": [
-    "**/*.spec.ts",
-    "data/*.ts"
-  ]
+  "include": ["**/*.spec.ts", "data/*.ts"]
 }
