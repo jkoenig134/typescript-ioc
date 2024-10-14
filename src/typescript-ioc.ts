@@ -1,41 +1,43 @@
 /**
  * This is a lightweight annotation-based dependency injection container for typescript.
  *
- * Visit the project page on [GitHub] (https://github.com/thiagobustamante/typescript-ioc).
+ * Visit the project page on [GitHub] (https://github.com/nmshd/typescript-ioc).
  */
 
 import 'reflect-metadata';
+import { IoCContainer } from './container/container';
 import {
+    BuildContext,
     Config,
-    ValueConfig,
+    ConstantConfiguration,
+    ContainerConfiguration,
+    NamespaceConfiguration,
     ObjectFactory,
     Scope,
-    ContainerConfiguration,
-    ConstantConfiguration,
-    NamespaceConfiguration,
     Snapshot,
-    BuildContext
+    ValueConfig
 } from './model';
-import { IoCContainer } from './container/container';
-import { LocalScope, SingletonScope, RequestScope } from './scopes';
+import { LocalScope, RequestScope, SingletonScope } from './scopes';
 
-export { Config };
-export { ValueConfig };
-export { ObjectFactory };
-export { BuildContext };
-export { Scope };
-export { ContainerConfiguration };
-export { ConstantConfiguration };
 export {
-    Inject,
     Factory,
-    Singleton,
-    Scoped,
-    OnlyInstantiableByContainer,
+    Inject,
+    InjectValue,
     InRequestScope,
-    InjectValue
+    OnlyInstantiableByContainer,
+    Scoped,
+    Singleton
 } from './decorators';
-export { Snapshot };
+export {
+    BuildContext,
+    Config,
+    ConstantConfiguration,
+    ContainerConfiguration,
+    ObjectFactory,
+    Scope,
+    Snapshot,
+    ValueConfig
+};
 
 Scope.Local = new LocalScope();
 Scope.Singleton = new SingletonScope();
